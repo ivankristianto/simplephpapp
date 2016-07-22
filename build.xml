@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="name-of-project" default="full-build">
  <!-- By default, we assume all tools to be on the $PATH -->
- <property name="pdepend" value="pdepend"/>
+ <!-- <property name="pdepend" value="pdepend"/>
  <property name="phpcpd"  value="phpcpd"/>
  <property name="phpcs"   value="phpcs"/>
  <property name="phpdox"  value="phpdox"/>
  <property name="phploc"  value="phploc"/>
- <property name="phpmd"   value="phpmd"/>
+ <property name="phpmd"   value="phpmd"/> -->
  <property name="phpunit" value="phpunit"/>
 
  <!-- Use this when the tools are located as PHARs in ${basedir}/build/tools
@@ -81,7 +81,7 @@
   <property name="prepare.done" value="true"/>
  </target>
 
- <target name="lint"
+ <!-- <target name="lint"
          unless="lint.done"
          description="Perform syntax check of sourcecode files">
   <apply executable="php" taskname="lint">
@@ -223,7 +223,7 @@
   </exec>
 
   <property name="phpcpd.done" value="true"/>
- </target>
+ </target> -->
 
  <target name="phpunit"
          unless="phpunit.done"
@@ -231,7 +231,7 @@
          description="Run unit tests with PHPUnit">
   <exec executable="${phpunit}" resultproperty="result.phpunit" taskname="phpunit">
    <arg value="--configuration"/>
-   <arg path="${basedir}/build/phpunit.xml"/>
+   <arg path="${basedir}/phpunit.xml"/>
   </exec>
 
   <property name="phpunit.done" value="true"/>
@@ -243,21 +243,21 @@
          description="Run unit tests with PHPUnit (without generating code coverage reports)">
   <exec executable="${phpunit}" failonerror="true" taskname="phpunit">
    <arg value="--configuration"/>
-   <arg path="${basedir}/build/phpunit.xml"/>
+   <arg path="${basedir}/phpunit.xml"/>
    <arg value="--no-coverage"/>
   </exec>
 
   <property name="phpunit.done" value="true"/>
  </target>
 
- <target name="phpdox"
+ <!-- <target name="phpdox"
          unless="phpdox.done"
          depends="phploc-ci,phpcs-ci,phpmd-ci"
          description="Generate project documentation using phpDox">
   <exec executable="${phpdox}" dir="${basedir}/build" taskname="phpdox"/>
 
   <property name="phpdox.done" value="true"/>
- </target>
+ </target> -->
 
  <target name="-check-failure">
   <fail message="PHPUnit did not finish successfully">
@@ -269,4 +269,3 @@
   </fail>
  </target>
 </project>
-
